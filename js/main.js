@@ -1,3 +1,7 @@
+ dev.md.draganddrop
+console.log("JS file conneccted");
+
+=======
 console.log("js file connected");
 
 const theButtons = document.querySelectorAll("#buttonHolder img"),
@@ -14,3 +18,4 @@ function changeBGImage() {
 
 //event listener
 theButtons.forEach(button => button.addEventListener("click", changeBGImage));
+ main
