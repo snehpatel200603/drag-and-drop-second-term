@@ -1,8 +1,11 @@
  dev.md.draganddrop
 console.log("JS file conneccted");
 
-=======
+ HEAD
+
+
 console.log("js file connected");
+
 
 const theButtons = document.querySelectorAll("#buttonHolder img"),
 puzzleboard = document.querySelector(".puzzle-board");
@@ -18,4 +21,5 @@ function changeBGImage() {
 
 //event listener
 theButtons.forEach(button => button.addEventListener("click", changeBGImage));
- main
+
+
