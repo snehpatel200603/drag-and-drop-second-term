@@ -18,8 +18,13 @@ function changeBGImage() {
     puzzleboard.style.backgroundImage = `url(images/backGround${this.id}.jpg)` 
 }
 
+function handleStartDrag() {
+    console.log("Started draging this piece:", this)
+
+}
 
 //event listener
 theButtons.forEach(button => button.addEventListener("click", changeBGImage));
 
+puzzlePieces.forEach(piece => piece.addEventListener("dragstart", handleStartDrag));
 
