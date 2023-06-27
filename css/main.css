@@ -125,3 +125,27 @@ footer {
 #buttonHolder img:hover {
 	opacity:.5;
 }
+
+/* this is the code for the styling of the reset button with the hover effect */
+
+#resetSection {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+  }
+  
+#resetBut {
+	color: white;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 8px 12px;
+  }
+  
+  #resetBut:hover {
+	background-color: white;
+	color: black;
+  }
+  
