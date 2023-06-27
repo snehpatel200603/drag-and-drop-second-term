@@ -1,9 +1,10 @@
 //variables
-const theButtons = document.querySelectorAll("#buttonHolder img"),
-    puzzleBoard = document.querySelector(".puzzle-board"),
-    puzzlePieces = document.querySelectorAll(".puzzle-pieces img");
-    puzzlePiecesDiv = document.querySelector(".puzzle-pieces")
-    dropZones = document.querySelectorAll(".drop-zone"); 
+const theButtons = document.querySelectorAll("#buttonHolder img");
+const puzzleBoard = document.querySelector(".puzzle-board");
+const puzzlePieces = document.querySelectorAll(".puzzle-pieces img");
+// this code is used for all the puzzele piece in the div nad it will help to chnage the puzzele peaces with the change of the background change 
+const puzzlePiecesDiv = document.querySelector(".puzzle-pieces")
+const dropZones = document.querySelectorAll(".drop-zone"); 
 //console.log(theButtons);
 //console.log(puzzleBoard);
 
@@ -15,11 +16,22 @@ function changeBGImage() {
     puzzleBoard.style.backgroundImage = `url(images/backGround${this.id}.jpg)`
 
     // bug fix 2 will go hear
-    // will use for each loop and if statement
-    // oi want ot loop through dropzones and check if there is?
-    //check with firstChild 
-    // if there is a child 
-    // puzzlePieceDiv.appendChild(something needs to go hear )
+    // Reset puzzle by removing dropped pieces from drop zones
+    dropZones.forEach((zone) => {
+        if (zone.firstChild) {
+          const piece = zone.firstChild;
+          puzzlePiecesDiv.appendChild(piece);
+          piece.classList.remove("dropped");
+        }
+      });
+    // hera the code exicute the chnage of the images of the puzzele peaces 
+    //In summary, this code loops through an array of puzzle pieces, replaces any digit in their image source URLs with the id of the current context, and updates the image source accordingly.
+      for (let i = 0; i < puzzlePieces.length; i++) {
+        const piece = puzzlePieces[i];
+        const originalPieceImage = piece.getAttribute('src');
+        const newPieceImage = originalPieceImage.replace(/\d/g, this.id);
+        piece.src = newPieceImage;
+    }
 }
 
 function handleDragOver(e) {
@@ -45,6 +57,15 @@ function handleDrop (e) {
       }
     this.appendChild(draggedPieces);
 }
+// this function is added to make the reset button work and to reset the whole puzzele
+function resetPuzzle() {
+    // Reset puzzle by reparenting the puzzle pieces to the puzzlePiecesDiv
+    puzzlePieces.forEach((piece) => {
+      piece.classList.remove("dropped");
+      piece.parentNode.removeChild(piece);
+      puzzlePiecesDiv.appendChild(piece);
+    });
+  }
 
 
 
@@ -56,3 +77,7 @@ puzzlePieces.forEach(piece => piece.addEventListener("dragstart", handleStartDra
 dropZones.forEach(zone => zone.addEventListener("dragover", handleDragOver));
 
 dropZones.forEach(zone => zone.addEventListener("drop", handleDrop));
+
+// this is for the event to add the reset button ad and this will resert all the puzzele peaces when the code is exicuted
+const resetButton = document.getElementById("resetBut");
+resetButton.addEventListener("click", resetPuzzle);
