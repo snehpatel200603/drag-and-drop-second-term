@@ -36,12 +36,13 @@ function handleStartDrag() {
 
 function handleDrop (e) {
     e.preventDefault();
-    console.log("dorpped sonething on me");
+    console.log("dorpped something on me");
     //this line moves the draged peace form the ;est sode of the board into ehatever dropzone we choose 
-    //bugfix 1 will go hear 
-if(this.children.length >= 1){
-  return;
-}
+    /* BUG-FIX 1 hear we have given the event to solve the multiple drop bug so when we put any peace in drop area we do not get to put another drop peace to that same drop area
+    this code fragment is used to determine whether there are one or more child elements and, if so, to stop the execution of the current function or block. */
+    if(this.children.length >= 1){
+        return;
+      }
     this.appendChild(draggedPieces);
 }
 
